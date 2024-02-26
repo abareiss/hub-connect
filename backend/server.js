@@ -11,6 +11,8 @@ const bcrypt = require('bcrypt')
 // token that follows user when they get created/sign in. Follows them around. Removed/deleted when they sign-out
 const jwt = require('jsonwebtoken')
 const User = require('./models/userSchema')
+const Hub = require('./models/hubSchema')
+
 
 const SECRET_KEY = 'secretkey'
 
@@ -88,5 +90,32 @@ app.post('/login', async (req, res) => {
         res.json({message: 'Login successful'})
     }catch (error){
         res.status(500).json({error: 'Error logging in'})
+    }
+})
+
+
+
+//LISTING HUBS
+// POST LIST HUB
+// we are using express app to post data into the /listhub route
+app.post('/listhub', async(req, res) => {
+    try{
+        const{price, city, state, zip, availability_start, availability_end, image} = req.body
+        const newHub = new Hub({price, city, state, zip, availability_start, availability_end, image})
+        await newHub.save()
+        res.status(201).json({message: 'Hub listing created successfully'})
+    } catch(error) {
+        res.status(500).json({error: 'Error listing hub'})
+    }
+})
+
+
+// GET LISTED HUB
+app.get('/listhub', async (req,res) =>{
+    try{
+        const hub = await Hub.find()
+        res.status(201).json(hubs)
+    } catch (error){
+        res.status(500).json({error: 'Unable to get listed hubs'})
     }
 })
