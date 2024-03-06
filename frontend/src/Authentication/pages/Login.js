@@ -30,7 +30,7 @@ function Login() {
         setUsername('')
         setPassword('')
         fetchUsers();
-        navigate('/account')
+        navigate('/homepage')
         window.location.reload()
         localStorage.setItem('token', token)
     } catch(error){

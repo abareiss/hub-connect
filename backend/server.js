@@ -11,11 +11,16 @@ const bcrypt = require('bcrypt')
 // token that follows user when they get created/sign in. Follows them around. Removed/deleted when they sign-out
 const jwt = require('jsonwebtoken')
 const User = require('./models/userSchema')
+const Hub = require('./models/hubSchema')
+const {min_value, max_value} = require('./helper.js');
 
-const SECRET_KEY = 'secretkey'
+const SECRET_KEY = 'secretkey' 
 
 //connect to express app -> to listen to port inside 3001
 const app = express()
+
+// Ranking algorithm function
+
 
 
 //connect to MongoDB
@@ -90,3 +95,32 @@ app.post('/login', async (req, res) => {
         res.status(500).json({error: 'Error logging in'})
     }
 })
+
+// GET USER 
+app.get('/listhub', async (req,res) =>{
+    try{
+
+        let query = { city : "Irvine"}
+        const hubs = await Hub.find(query) // returns a list of objects. 
+        // hubs = hubs.toArray(function(err, result){
+        //     if (err) throw err;
+        // })
+
+        // Rating: max - 5, min - 0; Likes: min - 0
+        
+        min_price = min_value(hubs, "price")
+        max_price = max_value(hubs, "price")
+        min_likes = 0
+        max_likes = max_value(hubs, "likes")
+        min_views = 0
+        max_views = max_value(hubs, "views")
+        min_rating = 0
+        max_rating = max_value(hubs, "rating")
+
+        
+        res.status(201).json(hubs)
+    } catch (error){
+        res.status(500).json({error: 'Unable to get listed hubs'})
+    }
+})
+
