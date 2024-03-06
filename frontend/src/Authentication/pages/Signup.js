@@ -9,6 +9,7 @@ function Signup() {
   const [dob, setDOB] = useState('')
   const [universityname, setUniversityName] = useState('')
   const [email, setEmail] = useState('')
+  const [personalemail, setPersonalEmail] = useState('')
   //const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ function Signup() {
           setDOB('')
           setUniversityName('')
           setEmail('')
+          setPersonalEmail('')
           //setUsername('')
           setPassword('')
           fetchUsers()
@@ -105,9 +107,19 @@ function Signup() {
                       <br />
                       <input className='w-[400px] h-[40px] rounded-xl bg-purple-300 p-2' 
                           type='text'
-                          placeholder='Email'
+                          placeholder='School Email'
                           value={email}
                           onChange={(e) => setEmail(e.target.value)} />
+                  </div>
+
+                  <div className='mb-4'>
+                      <label>Personal Email</label>
+                      <br />
+                      <input className='w-[400px] h-[40px] rounded-xl bg-purple-300 p-2' 
+                          type='text'
+                          placeholder='Personal Email'
+                          value={email}
+                          onChange={(e) => setPersonalEmail(e.target.value)} />
                   </div>
                   
                   {/* Username Input
