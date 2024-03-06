@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
     dob: {type: String, required: true}, //Format: YYYY-MM-DD
     universityname: {type: String, required: true},
     email:{type: String, required: true},
+    personalemail:{type: String, required: true},
     //username:{type: String, required: true, unique: true},
     password: {type: String, required: true},
     gender: {type: String, required: true}, // what about when this information is given by selection (like figma shows)??
