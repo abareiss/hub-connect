@@ -5,7 +5,7 @@ import Account from './Authentication/pages/Account';
 import HomePage from './MainPage/pages/HomePage'
 import Navbar from './Authentication/components/Navbar';
 import Login from './Authentication/pages/Login';
-
+import AboutMeSignup from './Authentication/pages/AboutMeSignup';
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <Route path='/' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/account' element={<Account />} />
+        <Route path='/aboutmesignup' element={<AboutMeSignup />} />
       </Routes>
     </div>
   );
