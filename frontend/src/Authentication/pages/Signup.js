@@ -12,6 +12,8 @@ function Signup() {
   const [personalemail, setPersonalEmail] = useState('')
   //const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [gender, setGender] = useState('')
+  const [dormpreference, setDormPreference] = useState('')
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +31,7 @@ function Signup() {
   const handleRegister = (event) => {
       event.preventDefault()
       axios
-      .post('http://localhost:3001/register', {firstname, lastname, dob, universityname, email, password})
+      .post('http://localhost:3001/register', {firstname, lastname, dob, universityname, email, personalemail, password, gender, dormpreference})
       .then(() => {
           alert('Account successfully created')
           setFirstName('')
@@ -40,8 +42,10 @@ function Signup() {
           setPersonalEmail('')
           //setUsername('')
           setPassword('')
+          setGender('')
+          setDormPreference('')
           fetchUsers()
-          navigate('/login')
+          navigate('/')
         })
       .catch((error) => {
           console.log('Unable to register user')
@@ -67,6 +71,7 @@ function Signup() {
                           value={firstname}
                           onChange={(e) => setFirstName(e.target.value)} />
                   </div>
+                  {console.log(firstname)}
 
                   {/* Last Name Input */}
                   <div className='mb-4'>
@@ -122,17 +127,6 @@ function Signup() {
                           onChange={(e) => setPersonalEmail(e.target.value)} />
                   </div>
                   
-                  {/* Username Input
-                  <div className='mb-4'>
-                      <label>Username</label>
-                      <br />
-                      <input className='w-[400px] h-[40px] rounded-xl bg-purple-300 p-2'
-                          type='text'
-                          placeholder='Username'
-                          value={username}
-                          onChange={(e) => setUsername(e.target.value)} />
-                  </div> */}
-                  
                   {/* Password Input */}
                   <div className='mb-6'>
                       <label>Password</label>
@@ -143,31 +137,77 @@ function Signup() {
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}/>
                     <div>
+                    
                     <legend>Gender:</legend>
-                         <input type="radio" id="genderChoice1" name="gender" value="male" />
-                            <label for="genderChoice1">Male</label>
+                         <input 
+                            type="radio" 
+                            id="genderChoice1" 
+                            name="gender" 
+                            value="male" 
+                            checked={gender === 'male'}
+                            onChange={(e) => setGender(e.target.value)}
+                            
+                        />
+                        <label htmlFor="genderChoice1">Male</label>
 
-                        <input type="radio" id="genderChoice2" name="gender" value="female" />
-                             <label for="genderChoice2">Female</label>
+                        <input 
+                            type="radio" 
+                            id="genderChoice2" 
+                            name="gender" 
+                            value="female" 
+                            checked={gender === 'male'}
+                            onChange={(e) => setGender(e.target.value)}
+                            />
+                             <label htmlFor="genderChoice2">Female</label>
 
-                        <input type="radio" id="genderChoice3" name="gender" value="nonbinary" />
-                            <label for="genderChoice3">Non-Binary</label>
+                        <input 
+                            type="radio" 
+                            id="genderChoice3" 
+                            name="gender" 
+                            value="nonbinary" 
+                            checked={gender === 'nonbinary'}
+                            onChange={(e) => setGender(e.target.value)}
+                        />
+                            <label htmlFor="genderChoice3">Non-Binary</label>
                      </div>
 
                      <div>
+                    
                     <legend>Who do you want to dorm with?:</legend>
-                         <input type="radio" id="dormChoice1" name="dorm" value="male" />
-                            <label for="dormChoice1">Male</label>
+                         <input 
+                            type="radio" 
+                            id="dormChoice1" 
+                            name="dorm" 
+                            value="male" 
+                            checked={dormpreference === 'male'}
+                            onChange={(e) => setDormPreference(e.target.value)}
+                        />
+                        <label htmlFor="dormChoice1">Male</label>
 
-                        <input type="radio" id="dormChoice2" name="dorm" value="female" />
-                             <label for="dormChoice2">Female</label>
+                        <input 
+                            type="radio" 
+                            id="dormChoice2" 
+                            name="dorm" 
+                            value="female"
+                            checked={dormpreference === 'female'}
+                            onChange={(e) => setDormPreference(e.target.value)} 
+                        />
+                        <label htmlFor="dormChoice2">Female</label>
 
-                        <input type="radio" id="dormChoice3" name="dorm" value="coed" />
-                            <label for="dormChoice3">Co-Ed</label>
+                        <input 
+                            type="radio" 
+                            id="dormChoice3" 
+                            name="dorm" 
+                            value="coed" 
+                            checked={dormpreference === 'coed'}
+                            onChange={(e) => setDormPreference(e.target.value)}
+                        />
+                        <label htmlFor="dormChoice3">Co-Ed</label>
+                        
                      </div>
                   </div>
                   
-                  <button className='w-[200px] h-[50px] border hover:bg-blue-400' type='submit' onClick={() => { window.location.href = '/aboutmesignup'; }}>Next</button>
+                  <button className='w-[200px] h-[50px] border hover:bg-blue-400' type='submit' onClick={handleRegister}>Register</button>
               </form>
           </div>
       </div>

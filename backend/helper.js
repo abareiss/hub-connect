@@ -63,56 +63,56 @@ function normalized_score(actual_score, min_score, max_score){
 
 
 // TESTING
-subleasing =  [   
-    {
-        "_id": "65d6953baff2cdddad504045",
-        "price": 2000,
-        "city": "Irvine",
-        "state": "California",
-        "zip": "92617",
-        "availability_start": "2024-09-01",
-        "availability_end": "2025-06-01",
-        "__v": 0,
-        "image": "xyz",
-        "views": 1000,
-        "rating": 2.45,
-        "likes": 300
-    }, 
+// subleasing =  [   
+//     {
+//         "_id": "65d6953baff2cdddad504045",
+//         "price": 2000,
+//         "city": "Irvine",
+//         "state": "California",
+//         "zip": "92617",
+//         "availability_start": "2024-09-01",
+//         "availability_end": "2025-06-01",
+//         "__v": 0,
+//         "image": "xyz",
+//         "views": 1000,
+//         "rating": 2.45,
+//         "likes": 300
+//     }, 
 
-    {
-        "_id": "65d695d0aff2cdddad504047",
-        "price": 2200,
-        "city": "Irvine",
-        "state": "California",
-        "zip": "92617",
-        "availability_start": "2024-09-02",
-        "availability_end": "2025-06-02",
-        "__v": 0,
-        "image": "xyz",
-        "views": 200,
-        "rating": 4.5,
-        "likes": 1000
-    },
+//     {
+//         "_id": "65d695d0aff2cdddad504047",
+//         "price": 2200,
+//         "city": "Irvine",
+//         "state": "California",
+//         "zip": "92617",
+//         "availability_start": "2024-09-02",
+//         "availability_end": "2025-06-02",
+//         "__v": 0,
+//         "image": "xyz",
+//         "views": 200,
+//         "rating": 4.5,
+//         "likes": 1000
+//     },
 
-    {
-        "_id": "65d69648aff2cdddad504049",
-        "price": 900,
-        "city": "Irvine",
-        "state": "California",
-        "zip": "92617",
-        "availability_start": "2024-09-03",
-        "availability_end": "2025-06-03",
-        "__v": 0,
-        "image": "xyz",
-        "views": 100,
-        "rating": 3.4,
-        "likes": 900
-    },
+//     {
+//         "_id": "65d69648aff2cdddad504049",
+//         "price": 900,
+//         "city": "Irvine",
+//         "state": "California",
+//         "zip": "92617",
+//         "availability_start": "2024-09-03",
+//         "availability_end": "2025-06-03",
+//         "__v": 0,
+//         "image": "xyz",
+//         "views": 100,
+//         "rating": 3.4,
+//         "likes": 900
+//     },
 
 
-]
+// ]
 
-ranking(subleasing, 900, 2200, 100, 1000, 300, 1000, 2.45, 4.5)
+// ranking(subleasing, 900, 2200, 100, 1000, 300, 1000, 2.45, 4.5)
 
 
 

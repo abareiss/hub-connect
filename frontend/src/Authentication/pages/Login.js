@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom' // so the user automatically gets
 
 function Login() {
     const [users, setUsers] = useState([])
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate();
 
@@ -24,10 +24,10 @@ function Login() {
     event.preventDefault();
     try{
         const response = await axios.post('http://localhost:3001/login', 
-        { username, password})
+        { email, password})
         const token = response.data.token
         alert('Login Successful')
-        setUsername('')
+        setEmail('')
         setPassword('')
         fetchUsers();
         navigate('/homepage')
@@ -48,14 +48,14 @@ function Login() {
         <div className='w-[100%] h-[100%] bg-zinc-100 text-black flex justify-center items-center'>
             <form className='text-center border rounded-lg w-[600px] h-[400px] p-9'
             onSubmit={handleLogin}>
-                    {/* Username Input */}
-                    <label>Username</label>
+                    {/* Email Input */}
+                    <label>School Email</label>
                     <br />
                     <input className='w-[400px] h-[40px] rounded-xl bg-purple-300 p-2'
                     type='text'
-                    placeholder='Username'
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)} />
+                    placeholder='School Email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)} />
                     <br />
                     <br />
                     {/* Password Input */}

@@ -55,9 +55,9 @@ app.use(cors())
 // we are using express app to post data into the /register route
 app.post('/register', async(req, res) => {
     try{
-        const{email, username, password} = req.body
+        const{firstname, lastname, dob, universityname, email, personalemail, password, gender, dormpreference} = req.body
         const hashedPassword = await bcrypt.hash(password,10)
-        const newUser = new User({email, username, password:hashedPassword})
+        const newUser = new User({firstname, lastname, dob, universityname, email, personalemail, password:hashedPassword, gender, dormpreference})
         await newUser.save()
         res.status(201).json({message: 'User created successfully'})
     } catch(error) {
@@ -65,6 +65,17 @@ app.post('/register', async(req, res) => {
     }
 })
 
+// POST REQUEST
+app.post('/listhub', async(req, res) => {
+    try{
+        const{price, city, state, zip, availability_start, availability_end, image, likes, rating, views, name} = req.body
+        const newHub = new Hub({price, city, state, zip, availability_start, availability_end, image, likes, rating, views, name})
+        await newHub.save()
+        res.status(201).json({message: 'Hub listing created successfully'})
+    } catch(error) {
+        res.status(500).json({error: 'Error listing hub'})
+    }
+})
 
 // GET REGISTERED USERS
 app.get('/register', async (req,res) =>{
@@ -79,9 +90,9 @@ app.get('/register', async (req,res) =>{
 //GET LOGIN 
 app.post('/login', async (req, res) => {
     try {
-        const {username, password} = req.body
+        const {email, password} = req.body
         // retrieving the user data from MONGODB
-        const user = await User.findOne({username})
+        const user = await User.findOne({email})
         if (!user){
             return res.status(401).json({error: 'Invalid credentials'})
         }
@@ -95,6 +106,8 @@ app.post('/login', async (req, res) => {
         res.status(500).json({error: 'Error logging in'})
     }
 })
+
+
 
 // GET USER 
 app.get('/listhub', async (req,res) =>{

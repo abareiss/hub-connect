@@ -8,7 +8,11 @@ const hubSchema = new mongoose.Schema({
     zip: {type: String, required: true},
     availability_start: {type: String, required: true}, //Format: YYYY-MM-DD
     availability_end: {type: String, required: true}, //Format: YYYY-MM-DD
-    image: {type: String, required:true}
+    image: {type: String, required:true},
+    likes: {type: String, required: true},
+    rating: {type: String, required:true},
+    views: {type: String, required:true},
+    name: {type: String, required:true}
 })
 
 // Hub is the class with all the hubSchema attributes.

@@ -13,11 +13,16 @@ const userSchema = new mongoose.Schema({
     password: {type: String, required: true},
     gender: {type: String, required: true}, // what about when this information is given by selection (like figma shows)??
     dormpreference: {type: String, required: true}, // what about when this information is given by selection (like figma shows)??
-    aboutme: {type: String, required: true},
-    preferences_1: {type: String, required: true},
-    preferences_2: {type: String, required: true},
-    preferences_3: {type: String, required: true},
-    preferences_4: {type: String, required: true}
+    
+    aboutme: {type: String, required: false},
+    
+    preferences: [
+        {preferences_1: {type: String, required: false}},
+        {preferences_2: {type: String, required: false}},
+        {preferences_3: {type: String, required: false}},
+        {preferences_4: {type: String, required: false}}, 
+    ],
+
 })
 
 // User is the class with all the userSchema attributes.
