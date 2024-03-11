@@ -30,17 +30,24 @@ function min_value(sublistings, param){
 function ranking(sublistings, min_price, max_price, min_views, max_views, 
     min_likes, max_likes, min_rating, max_rating){
     
+    let vals = []
+    
     for(let i = 0; i < sublistings.length; i++){
         r = rank(sublistings[i],min_price, max_price, min_views, max_views, 
             min_likes, max_likes, min_rating, max_rating)
-        sublistings[i].list_ranking  = r
+        house = sublistings[i]
+        house.list_ranking = r
+        vals.push(house)
+        //sublistings[i].list_ranking  = r
+        //console.log(sublistings[i].list_ranking)
     }
+    console.log("----------------------------------------------------------")
+    console.log(vals)
 
     // list.sort((a, b) => (a.color > b.color) ? 1 : -1)
-    listings = sublistings.sort((a, b) => (a.list_ranking > b.list_ranking) ? 1 : -1)
-    listings = listings.reverse()
-    console.log(listings)
-    return listings
+    vals = vals.sort((a, b) => (a.list_ranking > b.list_ranking) ? 1 : -1)
+    vals = vals.reverse()
+    return vals
 }
 
 // Helper function for ranking -> ranks a house based on properties.
@@ -112,7 +119,7 @@ function normalized_score(actual_score, min_score, max_score){
 
 // ]
 
-// ranking(subleasing, 900, 2200, 100, 1000, 300, 1000, 2.45, 4.5)
+// console.log(ranking(subleasing, 900, 2200, 100, 1000, 300, 1000, 2.45, 4.5))
 
 
 

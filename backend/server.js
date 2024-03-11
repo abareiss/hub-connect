@@ -12,7 +12,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('./models/userSchema')
 const Hub = require('./models/hubSchema')
-const {min_value, max_value} = require('./helper.js');
+const {min_value, max_value, ranking} = require('./helper.js');
 
 const SECRET_KEY = 'secretkey' 
 
@@ -109,7 +109,7 @@ app.post('/login', async (req, res) => {
 
 
 
-// GET USER 
+// GET LISTING 
 app.get('/listhub', async (req,res) =>{
     try{
 
@@ -121,17 +121,25 @@ app.get('/listhub', async (req,res) =>{
 
         // Rating: max - 5, min - 0; Likes: min - 0
         
-        min_price = min_value(hubs, "price")
-        max_price = max_value(hubs, "price")
-        min_likes = 0
-        max_likes = max_value(hubs, "likes")
-        min_views = 0
-        max_views = max_value(hubs, "views")
-        min_rating = 0
-        max_rating = max_value(hubs, "rating")
+        const min_price = min_value(hubs, "price")
+        const max_price = max_value(hubs, "price")
+        const min_likes = 0
+        const max_likes = max_value(hubs, "likes")
+        const min_views = 0
+        const max_views = max_value(hubs, "views")
+        const min_rating = 0
+        const max_rating = max_value(hubs, "rating")
 
+        //console.log(hubs)
+        console.log(min_price, max_price)
+
+        const ranked = ranking(hubs, min_price, max_price, min_views, max_views, min_likes, max_likes, min_rating, max_rating)
         
-        res.status(201).json(hubs)
+
+        console.log("XXXXXXXXXXXXXXXXXX")
+        console.log(ranked)
+        
+        res.status(201).json(ranked)
     } catch (error){
         res.status(500).json({error: 'Unable to get listed hubs'})
     }
